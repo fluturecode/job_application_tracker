@@ -2,12 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  CreateJobSchema,
-  type CreateJobInput,
-  JobStatusEnum,
-  JobTypeEnum,
-} from '@/types/job';
+import { CreateJobSchema, type CreateJobInput } from '@/types/job';
 import { useJobStore } from '@/store/useJobStore';
 
 export default function JobForm() {
@@ -15,7 +10,7 @@ export default function JobForm() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<CreateJobInput>({
     resolver: zodResolver(CreateJobSchema),
     defaultValues: {
@@ -36,113 +31,82 @@ export default function JobForm() {
     reset();
   };
 
-  const formClasses = {
-    label: 'block text-white text-base mb-1',
-    input:
-      'w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-blue-500',
-    error: 'mt-1 text-sm text-red-400',
-  };
-
   return (
-    <div className='space-y-4'>
+    <div className='space-y-2'>
       <h1 className='text-xl text-white'>Job Application Tracker</h1>
       <h2 className='text-lg text-white mb-4'>Add New Job Application</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
         <div>
-          <label className={formClasses.label}>Job Title</label>
+          <label className='block text-white mb-1'>Job Title</label>
           <input
             {...register('title')}
             placeholder='Enter job title'
-            className={formClasses.input}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
           />
-          {errors.title && (
-            <p className={formClasses.error}>{errors.title.message}</p>
-          )}
         </div>
 
         <div>
-          <label className={formClasses.label}>Company</label>
+          <label className='block text-white mb-1'>Company</label>
           <input
             {...register('company')}
             placeholder='Enter company name'
-            className={formClasses.input}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
           />
-          {errors.company && (
-            <p className={formClasses.error}>{errors.company.message}</p>
-          )}
         </div>
 
         <div>
-          <label className={formClasses.label}>Location</label>
+          <label className='block text-white mb-1'>Location</label>
           <input
             {...register('location')}
             placeholder='Enter job location'
-            className={formClasses.input}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
           />
-          {errors.location && (
-            <p className={formClasses.error}>{errors.location.message}</p>
-          )}
         </div>
 
         <div>
-          <label className={formClasses.label}>Job Type</label>
+          <label className='block text-white mb-1'>Job Type</label>
           <select
             {...register('jobType')}
-            className={formClasses.input}
-            style={{ backgroundColor: '#18181b' }}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
           >
-            {Object.values(JobTypeEnum.enum).map((type) => (
-              <option key={type} value={type} className='bg-zinc-900'>
-                {type
-                  .split('_')
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(' ')}
-              </option>
-            ))}
+            <option value='software_developer'>Software Developer</option>
+            <option value='sales_engineer'>Sales Engineer</option>
+            <option value='other'>Other</option>
           </select>
         </div>
 
         <div>
-          <label className={formClasses.label}>Status</label>
+          <label className='block text-white mb-1'>Status</label>
           <select
             {...register('status')}
-            className={formClasses.input}
-            style={{ backgroundColor: '#18181b' }}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
           >
-            {Object.values(JobStatusEnum.enum).map((status) => (
-              <option key={status} value={status} className='bg-zinc-900'>
-                {status.charAt(0).toUpperCase() + status.slice(1)}
-              </option>
-            ))}
+            <option value='applied'>Applied</option>
+            <option value='interviewing'>Interviewing</option>
+            <option value='offered'>Offered</option>
+            <option value='rejected'>Rejected</option>
           </select>
         </div>
 
         <div>
-          <label className={formClasses.label}>Date Applied</label>
+          <label className='block text-white mb-1'>Date Applied</label>
           <input
             type='date'
             {...register('dateApplied')}
-            className={formClasses.input}
-            style={{ backgroundColor: '#18181b' }}
+            placeholder='mm/dd/yyyy'
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
           />
-          {errors.dateApplied && (
-            <p className={formClasses.error}>{errors.dateApplied.message}</p>
-          )}
         </div>
 
         <div>
-          <label className={formClasses.label}>Notes</label>
+          <label className='block text-white mb-1'>Notes</label>
           <textarea
             {...register('notes')}
             rows={4}
             placeholder='Add any additional notes'
-            className={`${formClasses.input} resize-none`}
-            style={{ backgroundColor: '#18181b' }}
+            className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400 resize-none'
           />
-          {errors.notes && (
-            <p className={formClasses.error}>{errors.notes.message}</p>
-          )}
         </div>
 
         <button
