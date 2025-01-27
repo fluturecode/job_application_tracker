@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 export const JobSchema = z.object({
   id: z.string().optional(),
   company: z.string().min(1, 'Company is required'),
