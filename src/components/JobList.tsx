@@ -43,13 +43,7 @@ export default function JobList() {
         ))}
       </div>
 
-      {filteredJobs.length === 0 && (
-        <div className='text-center py-10'>
-          <p className='text-gray-500 text-lg'>
-            No jobs found. Start by adding a new job application!
-          </p>
-        </div>
-      )}
+      {filteredJobs.length === 0 && <div className='text-center py-10'></div>}
     </div>
   );
 }

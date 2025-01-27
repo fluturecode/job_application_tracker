@@ -32,49 +32,61 @@ export default function JobForm() {
   };
 
   return (
-    <div className='space-y-4'>
-      <h1 className='text-xl text-white'>Job Application Tracker</h1>
-      <h2 className='text-lg text-white mb-4'>Add New Job Application</h2>
+    <div className='max-w-2xl mx-auto p-6'>
+      <h1 className='text-3xl font-bold text-white mb-2'>
+        Job Application Tracker
+      </h1>
+      <h2 className='text-xl font-medium text-white mb-6'>
+        Add New Job Application
+      </h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <table className='w-full'>
+        <table className='w-full border-separate border-spacing-y-3'>
           <tbody>
             <tr>
-              <td className='text-white pr-4 py-2 w-24'>Job Title</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Job Title
+              </td>
+              <td>
                 <input
                   {...register('title')}
                   placeholder='Enter job title'
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
                 />
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Company</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Company
+              </td>
+              <td>
                 <input
                   {...register('company')}
                   placeholder='Enter company name'
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
                 />
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Location</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Location
+              </td>
+              <td>
                 <input
                   {...register('location')}
                   placeholder='Enter job location'
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400'
                 />
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Job Type</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Job Type
+              </td>
+              <td>
                 <select
                   {...register('jobType')}
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white'
                 >
                   <option value='software_developer'>Software Developer</option>
                   <option value='sales_engineer'>Sales Engineer</option>
@@ -83,11 +95,13 @@ export default function JobForm() {
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Status</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Status
+              </td>
+              <td>
                 <select
                   {...register('status')}
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white'
                 >
                   <option value='applied'>Applied</option>
                   <option value='interviewing'>Interviewing</option>
@@ -97,23 +111,27 @@ export default function JobForm() {
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Date Applied</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Date Applied
+              </td>
+              <td>
                 <input
                   type='date'
                   {...register('dateApplied')}
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white'
                 />
               </td>
             </tr>
             <tr>
-              <td className='text-white pr-4 py-2'>Notes</td>
-              <td className='py-2'>
+              <td className='text-white font-medium text-lg w-32 align-top'>
+                Notes
+              </td>
+              <td>
                 <textarea
                   {...register('notes')}
                   rows={4}
                   placeholder='Add any additional notes'
-                  className='w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400 resize-none'
+                  className='w-full p-3 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400 resize-none'
                 />
               </td>
             </tr>
@@ -122,7 +140,7 @@ export default function JobForm() {
 
         <button
           type='submit'
-          className='w-full bg-zinc-800 text-white py-2 px-4 rounded hover:bg-zinc-700 transition-colors mt-4'
+          className='w-full bg-zinc-800 text-white py-3 px-4 rounded font-medium text-lg hover:bg-zinc-700 transition-colors mt-6'
         >
           Add Job
         </button>
