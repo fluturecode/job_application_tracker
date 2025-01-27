@@ -36,119 +36,122 @@ export default function JobForm() {
     reset();
   };
 
+  const formClasses = {
+    label: 'block text-white text-base mb-1',
+    input:
+      'w-full p-2 rounded bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-blue-500',
+    error: 'mt-1 text-sm text-red-400',
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className='space-y-4 bg-white p-6 rounded-lg shadow'
-    >
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Job Title
-        </label>
-        <input
-          {...register('title')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        />
-        {errors.title && (
-          <p className='text-red-500 text-sm mt-1'>{errors.title.message}</p>
-        )}
-      </div>
+    <div className='space-y-4'>
+      <h1 className='text-xl text-white'>Job Application Tracker</h1>
+      <h2 className='text-lg text-white mb-4'>Add New Job Application</h2>
 
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Company
-        </label>
-        <input
-          {...register('company')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        />
-        {errors.company && (
-          <p className='text-red-500 text-sm mt-1'>{errors.company.message}</p>
-        )}
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+        <div>
+          <label className={formClasses.label}>Job Title</label>
+          <input
+            {...register('title')}
+            placeholder='Enter job title'
+            className={formClasses.input}
+          />
+          {errors.title && (
+            <p className={formClasses.error}>{errors.title.message}</p>
+          )}
+        </div>
 
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Location
-        </label>
-        <input
-          {...register('location')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        />
-        {errors.location && (
-          <p className='text-red-500 text-sm mt-1'>{errors.location.message}</p>
-        )}
-      </div>
+        <div>
+          <label className={formClasses.label}>Company</label>
+          <input
+            {...register('company')}
+            placeholder='Enter company name'
+            className={formClasses.input}
+          />
+          {errors.company && (
+            <p className={formClasses.error}>{errors.company.message}</p>
+          )}
+        </div>
 
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Job Type
-        </label>
-        <select
-          {...register('jobType')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+        <div>
+          <label className={formClasses.label}>Location</label>
+          <input
+            {...register('location')}
+            placeholder='Enter job location'
+            className={formClasses.input}
+          />
+          {errors.location && (
+            <p className={formClasses.error}>{errors.location.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label className={formClasses.label}>Job Type</label>
+          <select
+            {...register('jobType')}
+            className={formClasses.input}
+            style={{ backgroundColor: '#18181b' }}
+          >
+            {Object.values(JobTypeEnum.enum).map((type) => (
+              <option key={type} value={type} className='bg-zinc-900'>
+                {type
+                  .split('_')
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(' ')}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className={formClasses.label}>Status</label>
+          <select
+            {...register('status')}
+            className={formClasses.input}
+            style={{ backgroundColor: '#18181b' }}
+          >
+            {Object.values(JobStatusEnum.enum).map((status) => (
+              <option key={status} value={status} className='bg-zinc-900'>
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className={formClasses.label}>Date Applied</label>
+          <input
+            type='date'
+            {...register('dateApplied')}
+            className={formClasses.input}
+            style={{ backgroundColor: '#18181b' }}
+          />
+          {errors.dateApplied && (
+            <p className={formClasses.error}>{errors.dateApplied.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label className={formClasses.label}>Notes</label>
+          <textarea
+            {...register('notes')}
+            rows={4}
+            placeholder='Add any additional notes'
+            className={`${formClasses.input} resize-none`}
+            style={{ backgroundColor: '#18181b' }}
+          />
+          {errors.notes && (
+            <p className={formClasses.error}>{errors.notes.message}</p>
+          )}
+        </div>
+
+        <button
+          type='submit'
+          className='w-full bg-zinc-800 text-white py-2 px-4 rounded hover:bg-zinc-700 transition-colors'
         >
-          {Object.values(JobTypeEnum.enum).map((type) => (
-            <option key={type} value={type}>
-              {type
-                .split('_')
-                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ')}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Status
-        </label>
-        <select
-          {...register('status')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        >
-          {Object.values(JobStatusEnum.enum).map((status) => (
-            <option key={status} value={status}>
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>
-          Date Applied
-        </label>
-        <input
-          type='date'
-          {...register('dateApplied')}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        />
-        {errors.dateApplied && (
-          <p className='text-red-500 text-sm mt-1'>
-            {errors.dateApplied.message}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label className='block text-sm font-medium text-gray-700'>Notes</label>
-        <textarea
-          {...register('notes')}
-          rows={4}
-          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        />
-        {errors.notes && (
-          <p className='text-red-500 text-sm mt-1'>{errors.notes.message}</p>
-        )}
-      </div>
-
-      <button
-        type='submit'
-        className='w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors'
-      >
-        Add Job
-      </button>
-    </form>
+          Add Job
+        </button>
+      </form>
+    </div>
   );
 }

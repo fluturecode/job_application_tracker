@@ -1,15 +1,15 @@
-'use client';
-
 import JobForm from '@/components/JobForm';
 import JobList from '@/components/JobList';
 
 export default function Home() {
   return (
-    <main className='container mx-auto px-4 py-8'>
-      <h1 className='text-3xl font-bold mb-8'>Job Application Tracker</h1>
-      <div className='space-y-8'>
-        <JobForm />
-        <JobList />
+    <main className='min-h-screen bg-zinc-900 text-white p-8'>
+      <div className='max-w-4xl mx-auto space-y-8'>
+        <h1 className='text-3xl font-bold'>Job Application Tracker</h1>
+        <div className='space-y-12'>
+          <JobForm />
+          <JobList />
+        </div>
       </div>
     </main>
   );
