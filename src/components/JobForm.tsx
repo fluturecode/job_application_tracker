@@ -7,8 +7,8 @@ import {
   type CreateJobInput,
   JobStatusEnum,
   JobTypeEnum,
-} from '../types/job';
-import { useJobStore } from '../store/useJobStore';
+} from '@/types/job';
+import { useJobStore } from '@/store/useJobStore';
 
 export default function JobForm() {
   const {
@@ -69,15 +69,33 @@ export default function JobForm() {
 
       <div>
         <label className='block text-sm font-medium text-gray-700'>
+          Location
+        </label>
+        <input
+          {...register('location')}
+          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+        />
+        {errors.location && (
+          <p className='text-red-500 text-sm mt-1'>{errors.location.message}</p>
+        )}
+      </div>
+
+      <div>
+        <label className='block text-sm font-medium text-gray-700'>
           Job Type
         </label>
         <select
           {...register('jobType')}
           className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
         >
-          <option value='software_developer'>Software Developer</option>
-          <option value='sales_engineer'>Sales Engineer</option>
-          <option value='other'>Other</option>
+          {Object.values(JobTypeEnum.enum).map((type) => (
+            <option key={type} value={type}>
+              {type
+                .split('_')
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -95,6 +113,34 @@ export default function JobForm() {
             </option>
           ))}
         </select>
+      </div>
+
+      <div>
+        <label className='block text-sm font-medium text-gray-700'>
+          Date Applied
+        </label>
+        <input
+          type='date'
+          {...register('dateApplied')}
+          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+        />
+        {errors.dateApplied && (
+          <p className='text-red-500 text-sm mt-1'>
+            {errors.dateApplied.message}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <label className='block text-sm font-medium text-gray-700'>Notes</label>
+        <textarea
+          {...register('notes')}
+          rows={4}
+          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+        />
+        {errors.notes && (
+          <p className='text-red-500 text-sm mt-1'>{errors.notes.message}</p>
+        )}
       </div>
 
       <button
